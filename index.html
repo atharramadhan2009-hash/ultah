@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selamat Ulang Tahun</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="page1">
+
+<audio autoplay loop>
+<source src="Jamrud.mp3" type="audio/mp3">
+</audio>
+
+<div class="confetti3d"></div>
+
+<div class="container">
+
+<h1 class="title">🎉 +1 kenji dan riffan 🎂</h1>
+
+<div class="cake-box">
+<div class="cake" id="cake">
+<div class="candle" id="candle">
+<div class="flame" id="flame"></div>
+</div>
+</div>
+</div>
+
+<p class="message">
+<br> ❗ Matikan Lilinnya❗ </br>
+بَارَكَ اللهُ فِي عُمْرِكِ وَفِي رِزْقِكِ فِي الدُّنْيَا وَالْآخِرَةِ
+</p>
+
+<a href="galery.html" id="linkBtn">
+<button class="btn hidden" id="btnNext">Klik Aku</button>
+</a>
+
+</div>
+
+<script>
+
+/* lilin */
+
+const candle = document.getElementById("candle");
+const flame = document.getElementById("flame");
+const btn = document.getElementById("btnNext");
+const cake = document.getElementById("cake");
+const link = document.getElementById("linkBtn");
+
+let escapeCount = 0;
+
+candle.addEventListener("click",()=>{
+
+flame.style.display="none";
+btn.classList.remove("hidden");
+cake.classList.add("blow");
+
+});
+
+
+/* fungsi lompat tombol */
+
+function jumpButton(){
+
+let x = Math.random()*550 - 100;
+let y = Math.random()*200 - 100;
+
+btn.style.transition = "transform 0.20s";
+btn.style.transform = `translate(${x}px, ${y}px)`;
+
+}
+
+
+/* kursor mendekat */
+
+btn.addEventListener("mouseover",()=>{
+jumpButton();
+});
+
+
+/* saat diklik */
+
+btn.addEventListener("click",(e)=>{
+
+if(escapeCount < 4){
+
+e.preventDefault();
+escapeCount++;
+jumpButton();
+
+}
+
+});
+
+
+/* confetti */
+
+const confetti3d = document.querySelector(".confetti3d");
+
+function createConfetti(){
+
+let el = document.createElement("div");
+
+let colors = ["#ff4d6d","#ffd166","#06d6a0","#118ab2","#ffffff","#ff9f1c"];
+
+let size = Math.random()*10 + 8;
+
+el.style.left = Math.random()*100 + "vw";
+el.style.width = size + "px";
+el.style.height = size + "px";
+el.style.background = colors[Math.floor(Math.random()*colors.length)];
+el.style.animationDuration = (Math.random()*3+4)+"s";
+
+confetti3d.appendChild(el);
+
+setTimeout(()=>{
+el.remove();
+},7000);
+
+}
+
+setInterval(createConfetti,90);
+
+</script>
+
+</body>
+</html>

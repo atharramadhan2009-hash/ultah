@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>memory</title>
+<link rel="stylesheet" href="galery.css">
+</head>
+
+<body class="page2">
+
+<audio id="bgMusic" autoplay loop>
+<source src="Jamrud.mp3" type="audio/mp3">
+</audio>
+
+<div class="confetti"></div>
+
+<div class="gallery">
+
+<div class="card">
+<video muted loop playsinline class="media">
+<source src="kenji1.mp4" type="video/mp4">
+</video>
+</video>
+</div>
+
+<div class="card">
+<video muted loop playsinline class="media">
+<source src="riffan1.mp4" type="video/mp4">
+</video>
+</video>
+</div>
+
+<div class="card">
+<video muted loop playsinline class="media">
+<source src="riffan2.mp4" type="video/mp4">
+</video>
+</video>
+</div>
+
+<div class="card">
+<video muted loop playsinline class="media">
+<source src="kenji2.mp4" type="video/mp4">
+</video>
+</div>
+
+<div class="card">
+<video muted loop playsinline class="media">
+<source src="kenji3.mp4" type="video/mp4">
+</video>
+</div>
+
+<div class="card">
+<img src="riffan4.jpeg" class="media">
+</div>
+
+<div class="card">
+<img src="kenji2.jpeg" class="media">
+</div>
+
+<div class="card">
+<img src="kenji3.jpeg" class="media">
+</div>
+
+<div class="card">
+<img src="riffan3.jpeg" class="media">
+</div>
+
+<div class="card">
+<img src="kenji4.jpeg" class="media">
+</div>
+
+<div class="card">
+<img src="kenji5.jpeg" class="media">
+</div>
+
+<div class="card">
+<img src="riffan&kenji2.jpeg" class="media">
+</div>
+
+<div class="card">
+<img src="riffan1.jpeg" class="media">
+</div>
+
+<div class="card">
+<img src="riffan2.jpeg" class="media">
+</div>
+
+<div class="card">
+<img src="kenji6.jpeg" class="media">
+</div>
+
+<div class="card">
+<img src="kenji&riffan.jpeg" class="media">
+</div>
+
+</div>
+
+<a href="index.html">
+<button class="btn back">Kembali</button>
+</a>
+
+<!-- VIEWER ZOOM -->
+<div class="viewer" id="viewer">
+<button class="closeBtn" id="closeViewer">⬅ Kembali</button>
+<div class="viewerContent" id="viewerContent"></div>
+</div>
+
+<script>
+
+const medias = document.querySelectorAll(".media");
+const viewer = document.getElementById("viewer");
+const viewerContent = document.getElementById("viewerContent");
+const closeViewer = document.getElementById("closeViewer");
+const bgMusic = document.getElementById("bgMusic");
+
+let activeVideo = null;
+
+/* buka zoom */
+
+medias.forEach(media => {
+
+media.addEventListener("click", ()=>{
+
+viewer.style.display="flex";
+viewerContent.innerHTML="";
+
+bgMusic.pause();
+
+if(media.tagName === "VIDEO"){
+
+let vid = document.createElement("video");
+vid.src = media.querySelector("source").src;
+vid.controls = true;
+vid.autoplay = true;
+vid.style.maxWidth="95%";
+vid.style.maxHeight="90%";
+
+viewerContent.appendChild(vid);
+activeVideo = vid;
+
+}else{
+
+let img = document.createElement("img");
+img.src = media.src;
+img.style.maxWidth="95%";
+img.style.maxHeight="90%";
+
+viewerContent.appendChild(img);
+
+}
+
+});
+
+});
+
+/* tutup zoom */
+
+closeViewer.addEventListener("click", ()=>{
+
+viewer.style.display="none";
+viewerContent.innerHTML="";
+
+if(activeVideo){
+activeVideo.pause();
+activeVideo=null;
+}
+
+bgMusic.play();
+
+});
+
+</script>
+
+</body>
+</html>     
